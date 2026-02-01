@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FWI Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+        }
+        .container {
+            width: 400px;
+            margin: 40px auto;
+            background: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #0d6efd;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0b5ed7;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>FWI Prediction</h1>
+
+    <!-- FIXED: correct endpoint + correct WS name -->
+    <form action="{{ url_for('predict_data') }}" method="post">
+
+        <input type="number" step="any" name="Temperature" placeholder="Temperature" required>
+        <input type="number" step="any" name="RH" placeholder="RH" required>
+        <input type="number" step="any" name="WS" placeholder="WS" required>
+        <input type="number" step="any" name="Rain" placeholder="Rain" required>
+        <input type="number" step="any" name="FFMC" placeholder="FFMC" required>
+        <input type="number" step="any" name="DMC" placeholder="DMC" required>
+        <input type="number" step="any" name="ISI" placeholder="ISI" required>
+        <input type="number" step="any" name="Classes" placeholder="Classes" required>
+        <input type="number" step="any" name="Region" placeholder="Region" required>
+
+        <button type="submit">Predict</button>
+    </form>
+
+    {% if result %}
+        <h2>The FWI prediction is {{ result }}</h2>
+    {% endif %}
+</div>
+
+</body>
+</html>
